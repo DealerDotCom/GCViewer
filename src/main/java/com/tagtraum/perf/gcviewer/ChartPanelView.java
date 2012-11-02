@@ -70,6 +70,7 @@ public class ChartPanelView {
     private TextAreaLogHandler textAreaLogHandler;
     private static final Logger IMP_LOGGER = Logger.getLogger("com.tagtraum.perf.gcviewer.imp");
     private static final Logger DATA_READER_FACTORY_LOGGER = Logger.getLogger("com.tagtraum.perf.gcviewer.DataReaderFactory");
+    private PauseHistogramPanel pauseHistogramPanel;
 
 
     public ChartPanelView(GCDocument gcDocument, URL url) throws IOException {
@@ -78,6 +79,7 @@ public class ChartPanelView {
         this.modelChart = new ModelChartImpl();
         this.modelPanel = new ModelPanel();
         this.modelDetailsPanel = new ModelDetailsPanel();
+        this.pauseHistogramPanel = new PauseHistogramPanel();
         
         JScrollPane modelDetailsScrollPane = new JScrollPane(modelDetailsPanel, 
                 JScrollPane.VERTICAL_SCROLLBAR_AS_NEEDED, 
@@ -207,12 +209,18 @@ public class ChartPanelView {
         this.modelPanel.setModel(model);
         this.modelChart.setModel(model, preferences);
         this.modelDetailsPanel.setModel(model);
+        this.pauseHistogramPanel.setModel(model);
         this.viewBar.setTitle(model.getURL().toString());
     }
 
     public void close() {
         gcDocument.removeChartPanelView(this);
     }
+
+    public PauseHistogramPanel getPauseHistogramPanel() {
+        return pauseHistogramPanel;
+    }
+
 
     private static class ViewBar extends JPanel {
         private JLabel title = new JLabel();

@@ -191,6 +191,7 @@ public class GCDocument extends JInternalFrame {
             final ChartPanelView chartPanelView = (ChartPanelView) chartPanelViews.get(i);
             final ModelChartImpl modelChart = (ModelChartImpl) chartPanelView.getModelChart();
             final ModelPanel modelPanel = chartPanelView.getModelPanel();
+            final PauseHistogramPanel pausePanel = chartPanelView.getPauseHistogramPanel();
             final JTabbedPane modelChartAndDetails = chartPanelView.getModelChartAndDetails();
             modelChart.resetPolygonCache();
             GridBagConstraints constraints = new GridBagConstraints();
@@ -224,6 +225,8 @@ public class GCDocument extends JInternalFrame {
             constraints.fill = GridBagConstraints.HORIZONTAL;
             constraints.anchor = GridBagConstraints.SOUTH;
             getContentPane().add(modelPanel, constraints);
+            constraints.anchor = GridBagConstraints.NORTH;
+            getContentPane().add(pausePanel, constraints);
             modelPanel.setVisible(showModelPanel && (!chartPanelView.isMinimized()));
 
             if (!chartPanelView.isMinimized()) {
