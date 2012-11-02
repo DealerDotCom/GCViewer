@@ -23,7 +23,7 @@
         <key>Java</key>
         <dict>
             <key>VMOptions</key>
-            <string>-Xmx512m -Xms512m</string>
+            <string>-Xms128m -Xmx512m</string>
             <key>ClassPath</key>
             ${classpath}
             <key>JVMVersion</key>
@@ -31,32 +31,32 @@
             <key>MainClass</key>
             <string>${mainClass}</string>
 
-            <!--<key>Properties</key>-->
-            <!--<dict>-->
-                <!--<key>swing.bufferPerWindow</key>-->
-                <!--<string>false</string>-->
+            <key>Properties</key>
+            <dict>
+                <key>swing.bufferPerWindow</key>
+                <string>false</string>
 
-                <!--<key>com.apple.mrj.application.live-resize</key>-->
-                <!--<string>false</string>-->
+                <key>com.apple.mrj.application.live-resize</key>
+                <string>false</string>
 
-                <!--<key>apple.awt.fullscreencapturealldisplays</key>-->
-                <!--<string>false</string>-->
+                <key>apple.awt.fullscreencapturealldisplays</key>
+                <string>false</string>
 
-                <!--<key>sun.java2d.noddraw</key>-->
-                <!--<string>true</string>-->
+                <key>sun.java2d.noddraw</key>
+                <string>true</string>
 
-                <!--<key>sun.java2d.pmoffscreen</key>-->
-                <!--<string>false</string>-->
+                <key>sun.java2d.pmoffscreen</key>
+                <string>false</string>
 
-                <!--<key>apple.awt.graphics.UseQuartz</key>-->
-                <!--<string>true</string>-->
+                <key>apple.awt.graphics.UseQuartz</key>
+                <string>true</string>
 
-                <!--<key>sun.java2d.d3d</key>-->
-                <!--<string>false</string>-->
+                <key>sun.java2d.d3d</key>
+                <string>false</string>
 
-                <!--<key>apple.laf.useScreenMenuBar</key>-->
-                <!--<string>true</string>-->
-            <!--</dict>-->
+                <key>apple.laf.useScreenMenuBar</key>
+                <string>true</string>
+            </dict>
 
         </dict>
     </dict>
