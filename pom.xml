@@ -72,6 +72,10 @@
 						<encoding>UTF-8</encoding>
 					</configuration>
 				</plugin>
+                <plugin>
+                    <artifactId>maven-dependency-plugin</artifactId>
+                    <version>2.5.1</version>
+                </plugin>
 				<plugin>
 					<artifactId>maven-antrun-plugin</artifactId>
 					<version>1.7</version>
@@ -134,56 +138,28 @@
 							</resources>
 						</configuration>
 					</execution>
-
-					<execution>
-						<id>copy-mac-resources</id>
-						<phase>package</phase>
-						<goals>
-							<goal>copy-resources</goal>
-						</goals>
-						<configuration>
-							<outputDirectory>${basedir}/target/mac</outputDirectory>
-							<resources>
-								<resource>
-									<directory>${basedir}/src/main/templates</directory>
-									<filtering>true</filtering>
-									<includes>
-										<include>Info.plist</include>
-									</includes>
-								</resource>
-							</resources>
-						</configuration>
-					</execution>
 				</executions>
 			</plugin>
+            <plugin>
+                  <groupId>org.codehaus.mojo</groupId>
+                  <artifactId>osxappbundle-maven-plugin</artifactId>
+                  <version>1.0-alpha-2</version>
+                  <configuration>
+                      <mainClass>com.tagtraum.perf.gcviewer.GCViewer</mainClass>
+                      <dictionaryFile>${basedir}/src/main/mac-app-resources/Info.plist</dictionaryFile>
+                      <javaApplicationStub>${basedir}/src/main/mac-app-resources/JavaApplicationStub</javaApplicationStub>
+                      <iconFile>${basedir}/src/main/mac-app-resources/GCViewer.icns</iconFile>
+                  </configuration>
+                  <executions>
+                      <execution>
+                          <phase>package</phase>
+                          <goals>
+                              <goal>bundle</goal>
+                          </goals>
+                      </execution>
+                 </executions>
+             </plugin>
 
-			<plugin>
-				<groupId>org.apache.maven.plugins</groupId>
-				<artifactId>maven-antrun-plugin</artifactId>
-				<executions>
-					<execution>
-						<id>mac-distribution</id>
-						<phase>package</phase>
-						<configuration>
-							<target>
-								<mkdir dir="target" />
-								<zip destfile="target/gcviewer_mac_${project.version}.zip">
-									<zipfileset dir="src/main/mac" excludes="**/JavaApplicationStub" />
-									<zipfileset dir="src/main/mac/GCViewer.app/Contents/MacOS/"
-										prefix="GCViewer.app/Contents/MacOS/" filemode="755" />
-									<zipfileset dir="target" includes="gcviewer-${project.version}.jar"
-										prefix="GCViewer.app/Contents/Resources/" />
-									<zipfileset dir="target/mac" includes="Info.plist"
-										prefix="GCViewer.app/Contents/" />
-								</zip>
-							</target>
-						</configuration>
-						<goals>
-							<goal>run</goal>
-						</goals>
-					</execution>
-				</executions>
-			</plugin>
 		</plugins>
 	</build>
 </project>
